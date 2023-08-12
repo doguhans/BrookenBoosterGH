@@ -13,12 +13,15 @@ public class Movement : MonoBehaviour
     [SerializeField] float tForce = 1000f;
     
     Rigidbody rb;
+    AudioSource aS;
     
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        aS = GetComponent<AudioSource>();
+        
        /* rb.constraints = RigidbodyConstraints.FreezeRotationX;
 
         rb.constraints= RigidbodyConstraints.FreezeRotationY;   başarısız deneme
@@ -42,13 +45,22 @@ public class Movement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space)) // ...GetKey("up")
         {
+            
 
             rb.AddRelativeForce(0, timedependentthrust, 0); // ...AddRelativeForce(vector3.up);
-
+            
+            if(!aS.isPlaying)
+            {
+             aS.Play();
+            }
+            
+           
+           
            /* Debug.Log("you pressed up.");
             xVal  = Input.GetAxis("Vertical") * Time.deltaTime* tForce;     // knowledge from past
             transform.Translate(0, xVal, 0); */
         }
+       
     }
         
         void ProcessRotation()

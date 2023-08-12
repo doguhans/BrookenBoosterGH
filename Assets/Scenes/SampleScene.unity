@@ -446,7 +446,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12157558, y: 0.00000002957522, z: -0.0000000036224803, w: 0.9925822}
+  m_LocalRotation: {x: 0.12157558, y: 0.000000029573071, z: -0.0000000036222116, w: 0.9925822}
   m_LocalPosition: {x: 0.73, y: 12.676191, z: -21.657436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -721,9 +721,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7365881016181810722, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
-      propertyPath: m_Constraints
-      value: 56
+    - target: {fileID: 1166891962, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166891962, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
+      propertyPath: m_Volume
+      value: 0.276
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166891962, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b42129393c39f9459090214bddc89c7, type: 3}
+    - target: {fileID: 1166891962, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166891962, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166891962, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
+      propertyPath: BypassListenerEffects
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7365881016181810780, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
       propertyPath: m_Name
