@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 
 public class Movement : MonoBehaviour
@@ -60,13 +60,25 @@ public class Movement : MonoBehaviour
             xVal  = Input.GetAxis("Vertical") * Time.deltaTime* tForce;     // knowledge from past
             transform.Translate(0, xVal, 0); */
         }
+        
        
     }
         
         void ProcessRotation()
         {
             float timedependentrotation = rForce*Time.deltaTime;  // frame independent since multiplied by Time.deltaTime
-
+        
+        if(Input.GetKey(KeyCode.L))
+        {
+               int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                int nextScene = currentSceneIndex +1;
+              if(currentSceneIndex <= SceneManager.sceneCount)
+               
+               SceneManager.LoadScene(nextScene);
+               else{
+                SceneManager.LoadScene(0);
+               }
+        }
             if(Input.GetKey("left") || Input.GetKey(KeyCode.A)) // ...GetKey(KeyCode.LeftArrow))
         {
             ApplyRotation(timedependentrotation); // transform.Rotate(0,0,1);
