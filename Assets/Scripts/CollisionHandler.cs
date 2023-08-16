@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
-   // GameObject ggameObject;
-
+    //GameObject ggameObject;
+    float loadSceneTime = 2f;
      
     void OnCollisionEnter(Collision other) {
         
@@ -15,18 +15,30 @@ public class CollisionHandler : MonoBehaviour
           case "Friendly":
           Debug.Log("You are at starting zone.");
           break;
-          case "Finish":
-          Debug.Log("You are at End zone.");
-          LoadNextLevel();
+          case "Finish":          
+          Debug.Log("You are at Finishing Zone.");
+          FinishingScenario();
           break;
           case "Fuel":
+          OnCollisionWithFuel( other );
           Debug.Log("You added fuel.");
           break;
           default:  
           Debug.Log("Lul.");
-          ReloadLevel();
+          CrashScenario();
           break ;
         }
+    }
+
+   void FinishingScenario()
+   {
+      GetComponent<Movement>().enabled = false;
+      Invoke("LoadNextLevel",loadSceneTime );
+   }
+    void CrashScenario()
+    {
+      GetComponent<Movement>().enabled = false;
+      Invoke("ReloadLevel",loadSceneTime);
     }
 
     void ReloadLevel()
@@ -37,15 +49,20 @@ public class CollisionHandler : MonoBehaviour
 
     void LoadNextLevel()
     {
+      
       int initialLevelIndex =SceneManager.GetActiveScene().buildIndex;
       int nextLevelIndex = initialLevelIndex + 1 ;
-      if(initialLevelIndex <= SceneManager.sceneCount-1)
+      if(nextLevelIndex == SceneManager.sceneCountInBuildSettings)
       {
+      nextLevelIndex = 0;
+      }
       SceneManager.LoadScene(nextLevelIndex);
-      }
-      else
-      {
-        SceneManager.LoadScene(0);
-      }
     }
+
+     void OnCollisionWithFuel(Collision other)
+    {
+      other.gameObject.GetComponent<MeshRenderer>().enabled = false ;
+      other.gameObject.GetComponent<SphereCollider>().enabled = false;
+    }
+
 }
