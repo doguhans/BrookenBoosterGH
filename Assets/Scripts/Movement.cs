@@ -11,23 +11,31 @@ public class Movement : MonoBehaviour
 
     [SerializeField] float rForce = 100f;
     [SerializeField] float tForce = 1000f;
-    
+    [SerializeField] AudioClip mainEngine;
+
+
+    [SerializeField] ParticleSystem mainEngineParticle;
+    [SerializeField] ParticleSystem sideBooster_L;
+    [SerializeField] ParticleSystem sideBooster_R;
     Rigidbody rb;
     AudioSource aS;
-    
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         aS = GetComponent<AudioSource>();
-        
-       /* rb.constraints = RigidbodyConstraints.FreezeRotationX;
 
-        rb.constraints= RigidbodyConstraints.FreezeRotationY;   başarısız deneme
 
-        rb.constraints= RigidbodyConstraints.FreezePositionZ; */
-       
+        /* rb.constraints = RigidbodyConstraints.FreezeRotationX;
+
+         rb.constraints= RigidbodyConstraints.FreezeRotationY;   başarısız deneme
+
+         rb.constraints= RigidbodyConstraints.FreezePositionZ; */
+
 
     }
 
@@ -36,78 +44,83 @@ public class Movement : MonoBehaviour
     {
         ProcessThrust();
         ProcessRotation();
-        
     }
 
     void ProcessThrust()
     {
-        float timedependentthrust = tForce*Time.deltaTime; // frame independent since multiplied by Time.deltaTime
+        float timedependentthrust = tForce * Time.deltaTime; // frame independent since multiplied by Time.deltaTime
 
-        if(Input.GetKey(KeyCode.Space)) // ...GetKey("up")
+        if (Input.GetKey(KeyCode.Space)) // ...GetKey("up")
         {
-            
+            if (!mainEngineParticle.isPlaying)
+                mainEngineParticle.Play();
 
             rb.AddRelativeForce(0, timedependentthrust, 0); // ...AddRelativeForce(vector3.up);
-            
-            if(!aS.isPlaying)
+
+            if (!aS.isPlaying)
             {
-             aS.Play();
+                aS.PlayOneShot(mainEngine);
             }
-            
-           
-           
-           /* Debug.Log("you pressed up.");
-            xVal  = Input.GetAxis("Vertical") * Time.deltaTime* tForce;     // knowledge from past
-            transform.Translate(0, xVal, 0); */
+            /* Debug.Log("you pressed up.");
+              xVal  = Input.GetAxis("Vertical") * Time.deltaTime* tForce;     // knowledge from past
+              transform.Translate(0, xVal, 0); */
         }
-        
-       
+
+        else
+        {
+            aS.Stop();
+            mainEngineParticle.Stop();
+        }
     }
-        
-        void ProcessRotation()
+
+    void ProcessRotation()
+    {
+        float timedependentrotation = rForce * Time.deltaTime;  // frame independent since multiplied by Time.deltaTime
+
+
+        if (Input.GetKey("left") || Input.GetKey(KeyCode.A)) // ...GetKey(KeyCode.LeftArrow))
         {
-            float timedependentrotation = rForce*Time.deltaTime;  // frame independent since multiplied by Time.deltaTime
-        
-        if(Input.GetKey(KeyCode.L))
-        {
-               int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-                int nextScene = currentSceneIndex +1;
-              if(currentSceneIndex <= SceneManager.sceneCount)
-               
-               SceneManager.LoadScene(nextScene);
-               else{
-                SceneManager.LoadScene(0);
-               }
-        }
-            if(Input.GetKey("left") || Input.GetKey(KeyCode.A)) // ...GetKey(KeyCode.LeftArrow))
-        {
+
             ApplyRotation(timedependentrotation); // transform.Rotate(0,0,1);
-
-
+            if (!sideBooster_R.isPlaying)
+            {
+                sideBooster_R.Play();
+            }
             /* Debug.Log("you pressed left.");
              yVal  = Input.GetAxis("Horizontal") * Time.deltaTime* rForce;  // knowledge from past
              transform.Rotate(0, 0, -yVal);*/
-
-
         }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) 
+        else
         {
-          
-          ApplyRotation(-timedependentrotation);  //transform.Rotate(0,0,-1* timedependentrotation); // transform.Rotate(backward);
+
+            sideBooster_R.Stop();
+        }
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+
+            ApplyRotation(-timedependentrotation);  //transform.Rotate(0,0,-1* timedependentrotation); // transform.Rotate(backward);
+            if (!sideBooster_L.isPlaying)
+            { sideBooster_L.Play(); }
+
+            /*  Debug.Log("you pressed right.");
+              yVal  = Input.GetAxis("Horizontal") * Time.deltaTime* rForce;  // knowledge from past
+              transform.Rotate(0, 0, yVal);*/
+        }
+        else
+        {
+
+            sideBooster_L.Stop();
+        }
+    }
+
+    void ApplyRotation(float tDependentRotation)
+    {
+        rb.freezeRotation = true;    // freezing rotation so we can manually rotate     THIS IS FOR BUGGY ROTATION SITUATION WHEN COLLISION APPLIED BETWEEN ROCKET AND OBSTACLE
+        transform.Rotate(Vector3.forward * tDependentRotation);
+        rb.freezeRotation = false;  // unfreezing rotation so the physics system can take over
+    }
 
 
-          /*  Debug.Log("you pressed right.");
-            yVal  = Input.GetAxis("Horizontal") * Time.deltaTime* rForce;  // knowledge from past
-            transform.Rotate(0, 0, yVal);*/
-        }
-        }
-
-         void ApplyRotation(float tdependentrotation)
-        {   
-            rb.freezeRotation= true;    // freezing rotation so we can manually rotate     THIS IS FOR BUGGY ROTATION SITUATION WHEN COLLISION APPLIED BETWEEN ROCKET AND OBSTACLE
-            transform.Rotate(Vector3.forward * tdependentrotation);
-            rb.freezeRotation= false;  // unfreezing rotation so the physics system can take over
-        }
 
 }
 
