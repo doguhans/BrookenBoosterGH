@@ -107,18 +107,24 @@ public class CollisionHandler : MonoBehaviour
     {
       int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
       int nextScene = currentSceneIndex + 1;
-      if (currentSceneIndex <= SceneManager.sceneCount)
+      if (nextScene == SceneManager.sceneCountInBuildSettings)
 
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(0);
       else
       {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(nextScene);
       }
     }
     if (Input.GetKeyDown(KeyCode.C))
     {
       collisionCheatActive = !collisionCheatActive;
       
+      if(collisionCheatActive)
+      Debug.Log("Activating Cheats.");
+      else if(!collisionCheatActive)
+      Debug.Log("Cheats Deactivated.");
+    
+
     }
 
   }
