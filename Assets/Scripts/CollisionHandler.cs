@@ -19,10 +19,13 @@ public class CollisionHandler : MonoBehaviour
 
   bool isTransitioning = false;
   bool collisionCheatActive = false;
+
+  
   void Start()
   {
     aS = GetComponent<AudioSource>();
     boxCollider = GetComponent<BoxCollider>();
+    
   }
 
   void Update()
@@ -30,7 +33,29 @@ public class CollisionHandler : MonoBehaviour
     CheatCodes();
 
   }
+  /* void TeleportInOut()
+  { 
+    
+    Vector3 playerPos = gameObject.transform.position;
+   
+    Vector3 TargetPos2 = teleportOutPoint.transform.position;
+    
+     Vector3 newValue = TargetPos2 - playerPos;
 
+     newValue.y += 10f;
+     gameObject.transform.position += newValue;
+
+  }
+   void TeleportOutIn()
+  { 
+    Vector3 playerPos = gameObject.transform.position;
+    Vector3 TargetPos1 = teleportInPoint.transform.position;
+    
+    Vector3 newValue = TargetPos1 - playerPos;
+    newValue.y += 10f;
+    gameObject.transform.position += newValue;
+  }
+*/
   void OnCollisionEnter(Collision other)
   {
 
@@ -51,12 +76,17 @@ public class CollisionHandler : MonoBehaviour
         OnCollisionWithFuel(other);
         Debug.Log("You added fuel.");
         break;
+      case "Tp_In":
+      break;
+      case "Tp_Out":
+      break;
       default:
         Debug.Log("Lul.");
         CrashScenario();
         break;
     }
   }
+ 
 
   void FinishingScenario()
   {
