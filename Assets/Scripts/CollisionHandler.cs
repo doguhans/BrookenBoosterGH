@@ -134,7 +134,7 @@ public class CollisionHandler : MonoBehaviour
   void CheatCodes()
   {
     
-    if (Input.GetKey(KeyCode.L))
+    if (Input.GetKeyDown(KeyCode.L))
     {
       int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
       int nextScene = currentSceneIndex + 1;
