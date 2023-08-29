@@ -20,7 +20,7 @@ public class Teleportation : MonoBehaviour
     {
         case"Player":
         Debug.Log("Teleporting...");
-        Invoke("TeleportingSequenceOnTop",2f);        
+        Invoke("TeleportingSequenceOnTop",.5f);        
         break;
         default:        
         break;

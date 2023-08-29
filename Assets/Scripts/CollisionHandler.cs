@@ -76,10 +76,9 @@ public class CollisionHandler : MonoBehaviour
         OnCollisionWithFuel(other);
         Debug.Log("You added fuel.");
         break;
-      case "Tp_In":
+      case "Teleporter":
       break;
-      case "Tp_Out":
-      break;
+     
       default:
         Debug.Log("Lul.");
         CrashScenario();
@@ -128,6 +127,8 @@ public class CollisionHandler : MonoBehaviour
   void OnCollisionWithFuel(Collision other)
   {
     Destroy(other.gameObject);
+    Destroy(GameObject.FindWithTag("SecretRoom"));
+    
   }
 
   void CheatCodes()

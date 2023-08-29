@@ -30,11 +30,7 @@ public class Movement : MonoBehaviour
         aS = GetComponent<AudioSource>();
 
 
-        /* rb.constraints = RigidbodyConstraints.FreezeRotationX;
-
-         rb.constraints= RigidbodyConstraints.FreezeRotationY;   başarısız deneme
-
-         rb.constraints= RigidbodyConstraints.FreezePositionZ; */
+     
 
 
     }
@@ -44,6 +40,7 @@ public class Movement : MonoBehaviour
     {
         ProcessThrust();
         ProcessRotation();
+        rb.freezeRotation = true; // will remove this after some point...
     }
 
     void ProcessThrust()

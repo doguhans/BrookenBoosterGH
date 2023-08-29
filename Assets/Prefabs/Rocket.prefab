@@ -368,6 +368,8 @@ GameObject:
   - component: {fileID: 7365881016181810721}
   - component: {fileID: 1166891962}
   - component: {fileID: 45368619}
+  - component: {fileID: 1802012551}
+  - component: {fileID: 1802012558}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Player
@@ -419,7 +421,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &7365881016181810723
 BoxCollider:
@@ -561,9 +563,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 8300000, guid: c9e5f31779679e74c81d341d47040fbc, type: 3}
-  finish: {fileID: 8300000, guid: 8eae5c6810b515a46a7d925d0e7d2b7d, type: 3}
+  finish: {fileID: 8300000, guid: 9d099669f83db3c4bbc4a4c6868b3cc2, type: 3}
   deathParticles: {fileID: 6110386875916455172}
   finishParticles: {fileID: 7093467755727463598}
+--- !u!114 &1802012551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365881016181810780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d110dceaaf8cc14da8453e23994c358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1802012558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365881016181810780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8866b35f4ea13449838d757ec40619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7365881016230580553
 GameObject:
   m_ObjectHideFlags: 0

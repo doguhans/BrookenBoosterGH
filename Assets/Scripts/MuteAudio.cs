@@ -5,6 +5,7 @@ using UnityEngine;
 public class MuteAudio : MonoBehaviour
 {
     AudioSource aS;
+    bool toggleMode= true;
     void Start()
     {
         aS = GetComponent<AudioSource>();
@@ -15,7 +16,14 @@ public class MuteAudio : MonoBehaviour
     {   
         if(Input.GetKeyDown(KeyCode.M))
         {
-            Debug.Log("Game Muted.");
+            toggleMode = !toggleMode;
+        }
+        if(toggleMode)
+        {
+            aS.enabled = true;
+        }
+        else if (! toggleMode)
+        {
             aS.enabled = false;
         }
        

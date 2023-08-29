@@ -9701,23 +9701,6 @@ MonoBehaviour:
   movementVector: {x: 0, y: 0.5, z: 0}
   movementFactor: 0
   period: 1
---- !u!1 &2025098523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7365881016181810780, guid: 6542907995b202a4881d69d0c380d8c9, type: 3}
-  m_PrefabInstance: {fileID: 7365881016668612962}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2025098530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025098523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8866b35f4ea13449838d757ec40619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2053860732
 GameObject:
   m_ObjectHideFlags: 0
